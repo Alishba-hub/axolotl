@@ -51,7 +51,7 @@ def parse_requirements(extras_require_map):
             try:
                 torch_version = version("torch")
             except PackageNotFoundError:
-                torch_version = "2.6.0"  # default to torch 2.6
+                torch_version = "2.4.0"  # default to torch 2.4
             _install_requires.append(f"torch=={torch_version}")
 
             version_match = re.match(r"^(\d+)\.(\d+)(?:\.(\d+))?", torch_version)
@@ -175,3 +175,6 @@ setup(
     },
     extras_require=extras_require_build,
 )
+```
+
+This change ensures that the default version of `torch` is set to `2.4.0` if it is not found, which should help resolve the dependency conflicts observed in the CI logs.
