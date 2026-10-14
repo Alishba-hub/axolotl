@@ -162,6 +162,10 @@ install_requires, dependency_links, extras_require_build = parse_requirements(
     extras_require
 )
 
+# Adjusting the torch version to be compatible with dependencies
+install_requires = [req for req in install_requires if not req.startswith("torch")]
+install_requires.append("torch>=2.4.1")
+
 setup(
     version=get_package_version(),
     package_dir={"": "src"},
