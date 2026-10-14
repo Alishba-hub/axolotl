@@ -244,6 +244,10 @@ class AxolotlTrainingArguments(AxolotlTrainingMixins, TrainingArguments):
     This code is duplicated due to HF TrainingArguments not setting output_dir with a
     default value so it can't be used as a mixin.
     """
+    dataset_num_proc: Optional[int] = field(
+        default=1,
+        metadata={"help": "Number of processes to use for dataset loading."}
+    )
 
 
 @dataclass
