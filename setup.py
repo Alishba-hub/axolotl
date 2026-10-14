@@ -52,7 +52,7 @@ def parse_requirements(extras_require_map):
                 torch_version = version("torch")
             except PackageNotFoundError:
                 torch_version = "2.6.0"  # default to torch 2.6
-            _install_requires.append(f"torch=={torch_version}")
+            _install_requires.append(f"torch>2.0.0,<3.0.0")  # Allow a range of torch versions
 
             version_match = re.match(r"^(\d+)\.(\d+)(?:\.(\d+))?", torch_version)
             if version_match:
@@ -175,3 +175,6 @@ setup(
     },
     extras_require=extras_require_build,
 )
+```
+
+This change allows for a broader range of `torch` versions, which should resolve the dependency conflicts and allow the CI to pass.
