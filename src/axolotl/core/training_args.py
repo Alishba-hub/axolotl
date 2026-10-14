@@ -244,6 +244,10 @@ class AxolotlTrainingArguments(AxolotlTrainingMixins, TrainingArguments):
     This code is duplicated due to HF TrainingArguments not setting output_dir with a
     default value so it can't be used as a mixin.
     """
+    dataset_num_proc: Optional[int] = field(
+        default=None,
+        metadata={"help": "Number of processes to use for dataset loading."}
+    )
 
 
 @dataclass
@@ -284,3 +288,6 @@ class AxolotlPRMConfig(AxolotlTrainingMixins, PRMConfig):
     """
     PRM config for PRM training
     """
+```
+
+This change adds the `dataset_num_proc` attribute to the `AxolotlTrainingArguments` class, which should resolve the CI failure.
